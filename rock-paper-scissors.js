@@ -1,19 +1,19 @@
 function getComputerChoice(){
     num = Math.floor(Math.random()*3);
     if(num == 0){
-        value = "Rock";
+        value = "rock";
     }
     else if(num == 1){
-        value = "Paper";
+        value = "paper";
     }
     else{
-        value = "Scissors";
+        value = "scissors";
     }
     return value;
 }
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    computerSelection = computerSelection.toLowerCase();
+    //playerSelection = playerSelection.toLowerCase();
+    //computerSelection = computerSelection.toLowerCase();
     if(playerSelection ==  computerSelection){
         output = "Its a tie!\n";
     }
@@ -27,12 +27,17 @@ function playRound(playerSelection, computerSelection) {
 }
 function game(){
     for(let i = 0; i < 5; i++){
-        playerSelection = prompt("Choose rock, paper, or scissors", "rock");
-        playRound
+        computerSelection = getComputerChoice();
+        playerSelection = prompt("Choose rock, paper, or scissors");
+        console.log("Round " + (i + 1) + ": " + playRound());
+    }
+}
+function game(){
+    for(let i = 1; i < 6; i++){
+        playerSelection = prompt("choose:");
+        computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log("player: " + playerSelection + "\tcomputer: " + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+game();
