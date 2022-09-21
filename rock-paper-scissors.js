@@ -33,10 +33,30 @@ function game(){
     }
 }
 function game(){
+    losses = 0;
+    wins = 0;
     for(let i = 1; i < 6; i++){
         playerSelection = prompt("choose:");
         computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
+        result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        if(result.at(4) == 'l'){
+            losses++;
+        }
+        if(result.at(4) == 'w'){
+            
+            wins++;
+        }
+    }
+    console.log("Wins: " + wins + "\tlosses: " + losses);
+    if(wins > losses){
+        console.log("You won the game!");
+    }
+    else if(losses > wins){
+        console.log("You lost the game!");
+    }
+    else{
+        console.log("its a tie");
     }
 }
 
