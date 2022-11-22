@@ -19,11 +19,33 @@ function playRound(playerSelection, computerSelection) {
     }
     else if((playerSelection == "rock" & computerSelection == "paper") || (playerSelection == "paper" & computerSelection == "scissors") || (playerSelection == "scissors" & computerSelection == "rock")){
         output = "You lose! " + computerSelection + " beats " + playerSelection;
+        losses++
     }
     else {
         output = "You won! " + playerSelection + " beats " + computerSelection;
+        wins++
     }
-    return output;
+    const p = document.createElement('p')
+    gameCount++;
+    if (gameCount < 6) {
+        p.textContent = output
+        div.appendChild(p);
+    }
+    else {
+        
+        p.textContent = "Wins: " + wins + "\tlosses: " + losses
+        if(wins > losses){
+            p.textContent += "\nYou won the game!"
+        }
+        else if(losses > wins){
+            p.textContent += "\nYou lost the game!"
+        }
+        else{
+            p.textContent += "\nits a tie"
+        }
+        div.appendChild(p)
+    }
+    return output
 }
 function game(){
     for(let i = 0; i < 5; i++){
@@ -59,5 +81,23 @@ function game(){
         console.log("its a tie");
     }
 }
+rockButton = document.querySelector('#rockButton');
+rockButton.addEventListener('click', function(e) {
+    playRound("rock", getComputerChoice())})
 
-game();
+paperButton = document.querySelector('#paperButton');
+paperButton.addEventListener('click', function(e) {
+    playRound("paper", getComputerChoice())})
+
+scissorsButton = document.querySelector('#scissorsButton');
+scissorsButton.addEventListener('click', function(e) {
+    playRound("scissors", getComputerChoice())})    
+
+body = document.querySelector('body')
+const div = document.createElement('div')
+
+body.appendChild(div)
+
+let gameCount = 0
+let wins = 0
+let losses = 0
